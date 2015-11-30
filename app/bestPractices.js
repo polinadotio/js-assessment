@@ -8,7 +8,9 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.bestPracticesAnswers = {
   globals : function() {
-    myObject = {
+    //important to declare variables
+    //if you do not, they become global variables
+    var myObject = {
       name : 'Jory'
     };
 
@@ -17,19 +19,20 @@ exports.bestPracticesAnswers = {
 
   functions : function(flag) {
     if (flag) {
-      function getValue() { return 'a'; }
+      var getValue = function() { return 'a'; }
     } else {
-      function getValue() { return 'b'; }
+      var getValue = function() { return 'b'; }
     }
 
     return getValue();
   },
 
   parseInt : function(num) {
-    return parseInt(num);
+  //one best practice is to explicitly specify the radix
+    return parseInt(num, 10);
   },
 
   identity : function(val1, val2) {
-
+    return val1 === val2;
   }
 };
